@@ -1,66 +1,56 @@
 import json
-import os
 
 def demander_texte(message):
-    nom = input("Entrez le nom de votre apprenti magicien🧙:")
-    while len(nom) < 1:
-        nom = input("Nom invalide. Entrez le nom de votre apprenti :")
+    texte = input(message).strip()
+    while len(texte) == 0:
+        print("❌Erreur : La saisie ne peut pas être vide.")
+        texte = input(message).strip()
+    return texte
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    """
-    Demande une saisie utilisateur et s'assure qu'elle n'est pas vide.
-    Utilise .strip() pour nettoyer les espaces.
-    """
-    # TANT QUE la saisie est vide :
-    #    Redemander
-    # RETOURNER la saisie nettoyée
-    pass  # À remplacer par ton code
 
 def demander_nombre(message, min_val=None, max_val=None):
-    """
-    Demande un entier. Vérifie que c'est un nombre valide et qu'il est
-    compris entre min_val et max_val (si spécifiés).
-    """
-    # Boucle infinie pour demander :
-    #    1. Récupérer la saisie (input)
-    #    2. Vérifier si c'est un nombre entier (Attention : le sujet suggère de vérifier les chiffres manuellement ou via conversion)
-    #    3. Si c'est un nombre, vérifier s'il est entre min_val et max_val
-    #    4. Si tout est bon -> RETURN nombre
-    #    5. Sinon -> Afficher message d'erreur et recommencer
-    pass
+    while True:
+        saisie = input(message).strip()
+        if len(saisie) == 0:
+            print("Erreur : La saisie ne peut pas être vide.")
+            continue
+        est_negatif = False
+        chiffres = saisie
+        if saisie[0] == '-':
+            est_negatif = True
+            chiffres = saisie[1:]
+        if len(chiffres) == 0:
+            print("Veuillez entrer un nombre valide.")
+            continue
+        est_valide = True
+        for c in chiffres:
+            if c < '0' or c > '9':
+                est_valide = False
+                break
+        if not est_valide:
+            print("Veuillez entrer uniquement des chiffres.")
+            continue
+        nombre = 0
+        for c in chiffres:
+            nombre = nombre * 10 + (ord(c) - ord('0'))
+        if est_negatif:
+            nombre = -nombre
+        if min_val is not None and nombre < min_val:
+            print(f"Veuillez entrer un nombre entre {min_val} et {max_val}.")
+            continue
+        if max_val is not None and nombre > max_val:
+            print(f"Veuillez entrer un nombre entre {min_val} et {max_val}.")
+            continue
+        return nombre
 
 def demander_choix(message, options):
-    """
-    Affiche une liste numérotée d'options et demande à l'utilisateur de choisir un numéro.
-    Utilise demander_nombre() pour récupérer le choix.
-    """
-    # 1. Afficher le message
-    # 2. Pour chaque option dans la liste 'options' :
-    #      Afficher "i. Option" (ex: 1. Oui)
-    # 3. Appeler demander_nombre() avec min=1 et max=len(options)
-    # 4. Retourner l'élément correspondant dans la liste (Attention aux index : choix 1 = index 0)
-    pass
+    print(message)
+    for i in range(len(options)):
+        print(f"{i + 1}. {options[i]}")
+    choix_numero = demander_nombre("Votre choix : ", 1, len(options))
+    return options[choix_numero - 1]
 
 def load_fichier(chemin_fichier):
-    """
-    Charge un fichier JSON et retourne son contenu.
-    Utilise l'encodage utf-8.
-    """
-    # Ouvrir le fichier avec open() en mode lecture 'r' et encoding='utf-8'
-    # Utiliser json.load(f)
-    # Retourner les données
-    pass
+    with open(chemin_fichier, 'r', encoding='utf-8') as f:
+        donnees = json.load(f)
+        return donnees
