@@ -3,7 +3,7 @@ import json
 def demander_texte(message):
     texte = input(message).strip()
     while len(texte) == 0:
-        print("❌Erreur : La saisie ne peut pas être vide.")
+        print("Erreur : La saisie ne peut pas être vide.")
         texte = input(message).strip()
     return texte
 
