@@ -1,2 +1,1 @@
-print("hello adrien")
-print("hello Phileas")
+# 1er partie
