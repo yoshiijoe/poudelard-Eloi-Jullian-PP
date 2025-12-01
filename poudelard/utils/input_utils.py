@@ -2,6 +2,25 @@ import json
 import os
 
 def demander_texte(message):
+    nom = input("Entrez le nom de votre apprenti magicien🧙:")
+    while len(nom) < 1:
+        nom = input("Nom invalide. Entrez le nom de votre apprenti :")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     """
     Demande une saisie utilisateur et s'assure qu'elle n'est pas vide.
     Utilise .strip() pour nettoyer les espaces.
