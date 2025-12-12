@@ -34,44 +34,58 @@ def afficher_maison_gagnante(maisons):
     print(f"Gagnant(s) : {noms_propres} avec {score_max} points.")
 
 def repartition_maison(joueur, questions):
-    attributs = {
-        "courage": 0,
-        "intelligence": 0,
-        "loyauté": 0,
-        "ambition": 0
+    scores = {
+        "Gryffondor": 0,
+        "Serpentard": 0,
+        "Poufsouffle": 0,
+        "Serdaigle": 0
     }
-    questions = [
-        (
-            "Tu vois un ami en danger. Que fais-tu ?",
-            [
-                "Je fonce l'aider",
-                "Je réfléchis à un plan",
-                "Je cherche de l’aide",
-                "Je reste calme et j’observe"
-            ],
-            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
-        ),
-        (
-            "Quel trait te décrit le mieux ?",
-            [
-                "Courageux et loyal",
-                "Rusé et ambitieux",
-                "Patient et travailleur",
-                "Intelligent et curieux"
-            ],
-            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
-        ),
-        (
-            "Face à un défi difficile, tu...",
-            [
-                "Fonces sans hésiter",
-                "Cherches la meilleure stratégie",
-                "Comptes sur tes amis",
-                "Analyses le problème"
-            ],
-            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
-        )
-    ]
+
+    attributs = joueur["Attributs"]
+
+    scores["Gryffondor"] += attributs["courage"] * 2
+    scores["Serpentard"] += attributs["ambition"] * 2
+    scores["Poufsouffle"] += attributs["loyauté"] * 2
+    scores["Serdaigle"] += attributs["intelligence"] * 2
+
+    for question_tuple in questions:
+        texte_question = question_tuple[0]
+        choix_possibles = question_tuple[1]
+        maisons_associees = question_tuple[2]
+
+        print(texte_question)
+
+        for i in range(len(choix_possibles)):
+            print("{}. {}".format(i + 1, choix_possibles[i]))
+
+        reponse = int(input("Ton choix : "))
+
+        index_choisi = reponse - 1
+        maison_gagante_question = maisons_associees[index_choisi]
+
+        scores[maison_gagante_question] += 3
+        print()
+
+    print("Résumé des scores :")
+    for maison, points in scores.items():
+        print("{} : {} points".format(maison, points))
+    print()
+
+    meilleure_maison = ""
+    score_max = -1
+
+    for maison, points in scores.items():
+        if points > score_max:
+            score_max = points
+            meilleure_maison = maison
+
+    return meilleure_maison
+
+
+
+
+
+
 
 
 
