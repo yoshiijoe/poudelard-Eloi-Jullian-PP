@@ -1,4 +1,4 @@
-from utils.input_utils import demander_choix
+from poudelard.utils.input_utils import demander_choix
 
 
 def rencontrer_amis(joueur):
