@@ -56,6 +56,7 @@ def rencontrer_hagrid(personnage):
     options = ["1. Oui", "2. Non"]
 
     choix = demander_choix("Voulez-vous suivre Hagrid ?", options)
-    if choix ==
+    if choix == 1:
+        print("")
 
 
