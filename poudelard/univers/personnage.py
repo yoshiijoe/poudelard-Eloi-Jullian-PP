@@ -1,4 +1,3 @@
-from utils import *
 def initialiser_personnage(nom, prenom, attributs):
     joueur = {
         "Nom": nom,
@@ -6,7 +5,9 @@ def initialiser_personnage(nom, prenom, attributs):
         "Argent": 100,
         "Inventaire": [],
         "Sortilèges": [],
-        "Attributs": {}
+        "Attributs": {
+
+        }
     }
     return joueur
 
@@ -25,7 +26,7 @@ def modifier_argent(joueur, montant):
 
 
 def ajouter_objet(joueur, cle, objet):
-    if cle in joueur and (cle == "Inventaire" or cle == "Sortilège"):
+    if cle in joueur and (cle == "Inventaire" or cle == "Sortilèges"):
         joueur[cle].append(objet)
     else :
         print(f"Erreur : La catégorie '{cle}' n'existe pas ou n'est pas autorisée.")
