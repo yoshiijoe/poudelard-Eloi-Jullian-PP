@@ -1,5 +1,5 @@
-from utils.input_utils import demander_texte, demander_nombre, demander_choix
-from univers.personnage import initialiser_personnage, afficher_personnage
+from poudelard.utils.input_utils import demander_texte, demander_nombre, demander_choix
+from poudelard.univers.personnage import initialiser_personnage, afficher_personnage
 
 def introduction():
     print("Bienvenue jeune sorcier🧙‍♂️dans le monde magique✨✨✨.")

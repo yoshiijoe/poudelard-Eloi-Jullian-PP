@@ -1,12 +1,17 @@
 from utils import *
-def actualiser_points_maison(maisons, nom_maison, points) :
-    maisons = {
+
+maisons = {
         "Gryffondor": 0,
         "Serpentard": 0,
         "Poufsouffle": 0,
         "Serdaigle": 0
     }
-    return maisons
+def actualiser_points_maison(maisons, nom_maison, points):
+    if nom_maison in maisons:
+        maisons[nom_maison] += points
+        print("La maison {} a reçu (ou perdu) des points.".format(nom_maison))
+        print("Nouveau score de {} : {} points.".format(nom_maison, maisons[nom_maison]))
+
 
 def afficher_maison_gagnante(maisons):
     score_max = maisons["Gryffondor"]
@@ -31,7 +36,7 @@ def afficher_maison_gagnante(maisons):
         gagnants.append("Serdaigle")
 
     noms_propres = ", ".join(gagnants)
-    print(f"Gagnant(s) : {noms_propres} avec {score_max} points.")
+    print("Gagnant(s) : {} avec {} points.".format(noms_propres, score_max))
 
 def repartition_maison(joueur, questions):
     scores = {
