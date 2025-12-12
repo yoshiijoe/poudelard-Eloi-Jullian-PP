@@ -1,7 +1,8 @@
 #Apprentissage des sorts et quiz magique page 29
 import json
 import random
-
+from poudelard.univers.maison import actualiser_points_maison, afficher_maison_gagnante
+from poudelard.univers.personnage import afficher_personnage
 
 def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     with open(chemin_fichier, "r", encoding="utf-8") as f:
@@ -89,3 +90,19 @@ def quiz_magie(joueur, chemin_fichier="../data/quiz_magie.json"):
     return score
 
 
+def lancer_chapitre_3(personnage, maisons):
+    print(" Chapitre 3 : Les cours et la découverte de Poudlard ")
+    print()
+
+    apprendre_sorts(personnage)
+
+    points_gagnes = quiz_magie(personnage)
+
+    maison_joueur = personnage["Maison"]
+
+    actualiser_points_maison(maisons, maison_joueur, points_gagnes)
+
+    afficher_maison_gagnante(maisons)
+
+    print()
+    afficher_personnage(personnage)
