@@ -46,7 +46,7 @@ def ceremonie_repartition(joueur):
     print("\n" + "=" * 40)
     print("   LA CÉRÉMONIE DE RÉPARTITION   ")
     print("=" * 40)
-    print("Le Choixpeau Magique est posé sur votre tête...")
+    print("Le Choixpeau Magique est posé sur votre tête...\n")
 
     scores = joueur['Attributs']
 
@@ -69,7 +69,7 @@ def ceremonie_repartition(joueur):
     else:
         maison = "Serpentard"
 
-    print(f"\nCHOIXPEAU : 'Difficile... très difficile... Mais je sais !'")
+    print("CHOIXPEAU : 'Difficile... très difficile... Mais je sais !'")
     print(f"CHOIXPEAU : 'Ce sera... {maison} !'")
 
     joueur["Maison"] = maison

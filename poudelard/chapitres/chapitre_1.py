@@ -2,9 +2,11 @@ from poudelard.utils.input_utils import demander_texte, demander_nombre, demande
 from poudelard.univers.personnage import initialiser_personnage, afficher_personnage, modifier_argent, ajouter_objet
 
 def introduction():
+    print("")
     print("Bienvenue jeune sorcier dans le monde magique.")
     print("Ici tu vas devoir faire des choix qui auront tous une grande importance.")
     print("Alors choisi bien et bonne chance !")
+    print("")
     input("--- Appuyez sur ENTREE pour commencer votre aventure ---")
 
 def creer_personnage():
@@ -50,8 +52,8 @@ def recevoir_lettre():
         exit()
 
 def rencontrer_hagrid(personnage):
-    print(f"Hagrid: Salut {personnage['Prenom']}!")
-    print("Je suis venu t'aider à faire tes achats sur le Chemin de Traverse.")
+    print(f"Hagrid: - Salut {personnage['Prenom']}!")
+    print("- Je suis venu t'aider à faire tes achats sur le Chemin de Traverse.")
     print("")
 
     options = ["Oui", "Non"]
@@ -91,7 +93,8 @@ def acheter_fournitures(personnage):
         objet_choisi = boutique[choix - 1]
 
         if personnage['Argent'] < objet_choisi['prix']:
-            print("Vous n'avez pas assez d'argent... Vous ne pouvez pas aller à Poudlard.")
+            print("Vous n'avez pas assez d'argent, Gringotts ne veux pas vous accordez de prêt (vous n'avez pas de déclaration de revenus).")
+            print("Vous ne pouvez pas aller à Poudlard.")
             print("Fin de la partie.")
             exit()
         else:
