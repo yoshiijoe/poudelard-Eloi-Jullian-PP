@@ -137,6 +137,3 @@ def lancer_chapitre_1():
     personnage = acheter_fournitures(personnage)
     print ("Fin du Chapitre 1 ! Votre aventure commence à Poudlard")
     return personnage
-
-if __name__ == "__main__":
-    lancer_chapitre_1()
