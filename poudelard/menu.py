@@ -6,7 +6,7 @@ from poudelard.utils.input_utils import demander_nombre
 
 def afficher_menu_principal():
     print("\n" + "=" * 30)
-    print("      MENU PRINCIPAL")
+    print("       MENU PRINCIPAL")
     print("=" * 30)
     print("1. Lancer le Chapitre 1 – L’arrivée dans le monde magique.")
     print("2. Quitter le jeu.")

@@ -2,8 +2,8 @@ from poudelard.utils.input_utils import demander_texte, demander_nombre, demande
 from poudelard.univers.personnage import initialiser_personnage, afficher_personnage, modifier_argent, ajouter_objet
 
 def introduction():
-    print("Bienvenue jeune sorcier🧙‍♂️dans le monde magique✨✨✨.")
-    print("Ici tu vas devoir des choix qui auront tous une grande importance.")
+    print("Bienvenue jeune sorcier dans le monde magique.")
+    print("Ici tu vas devoir faire des choix qui auront tous une grande importance.")
     print("Alors choisi bien et bonne chance !")
     input("--- Appuyez sur ENTREE pour commencer votre aventure ---")
 
@@ -25,6 +25,7 @@ def creer_personnage():
     }
 
     joueur = initialiser_personnage(nom, prenom, attributs)
+    input("--- Appuyez sur ENTREE pour voir votre profil mise à jour ---")
     afficher_personnage(joueur)
 
     return joueur
@@ -143,8 +144,10 @@ def acheter_fournitures(personnage):
 def lancer_chapitre_1():
     introduction()
     personnage = creer_personnage()
+    input("--- Appuyez sur ENTREE pour entrer dans l'histoire ---")
     recevoir_lettre()
     rencontrer_hagrid(personnage)
+    input("--- Appuyez sur ENTREE pour aller au Chemin de Traverse ---")
     personnage = acheter_fournitures(personnage)
     print ("Fin du Chapitre 1 ! Votre aventure commence à Poudlard")
     return personnage

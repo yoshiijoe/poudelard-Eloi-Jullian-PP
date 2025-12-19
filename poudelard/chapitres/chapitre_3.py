@@ -33,11 +33,10 @@ def apprendre_sorts(joueur):
         if est_deja_pris == False:
             nouveaux_sorts.append(sort_choisi)
 
-    print("\n" + "*" * 50)
+    print("\n" + "-" * 50)
     print("      VOS PREMIERS COURS DE MAGIE")
-    print("*" * 50)
-    print("Vous passez la journée à agiter votre baguette...")
-    print("Après quelques explosions et beaucoup de concentration,")
+    print("-" * 50)
+    print("Après plusieurs cours et de travaille acharnée, ")
     print("vous avez appris 5 nouveaux sortilèges :\n")
 
     for sort in nouveaux_sorts:
