@@ -78,7 +78,9 @@ def ceremonie_repartition(joueur):
 
 def lancer_chapitre_2(joueur):
     rencontrer_amis(joueur)
+    input("--- Appuyez sur ENTREE pour passer à la suite ---")
     ceremonie_repartition(joueur)
+    input("--- Appuyez sur ENTREE pour voir votre profil mise à jour ---")
     print("\nVoici votre profil mis à jour :")
     afficher_personnage(joueur)
     print(f"Maison : {joueur['Maison']}")
