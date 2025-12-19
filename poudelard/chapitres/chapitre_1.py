@@ -5,7 +5,7 @@ def introduction():
     print("Bienvenue jeune sorcier🧙‍♂️dans le monde magique✨✨✨.")
     print("Ici tu vas devoir des choix qui auront tous une grande importance.")
     print("Alors choisi bien et bonne chance !")
-    input()
+    input("--- Appuyez sur ENTREE pour commencer votre aventure ---")
 
 def creer_personnage():
     nom = demander_texte("Choisi ton nom jeune sorcier : ")
@@ -49,14 +49,14 @@ def recevoir_lettre():
         exit()
 
 def rencontrer_hagrid(personnage):
-    print("Hagrid: Salut Harry !")
+    print(f"Hagrid: Salut {personnage['Prenom']}!")
     print("Je suis venu t'aider à faire tes achats sur le Chemin de Traverse.")
     print("")
 
-    options = ["1. Oui", "2. Non"]
+    options = ["Oui", "Non"]
 
     choix = demander_choix("Voulez-vous suivre Hagrid ?", options)
-    if choix == "2. Non":
+    if choix == "Non":
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
 
 def acheter_fournitures(personnage):
@@ -127,4 +127,16 @@ def acheter_fournitures(personnage):
 
     print("Tous les objets obligatoires ont été achetés avec succès ! Voici votre inventaire final :")
     afficher_personnage(personnage)
+    return personnage
 
+def lancer_chapitre_1():
+    introduction()
+    personnage = creer_personnage()
+    recevoir_lettre()
+    rencontrer_hagrid(personnage)
+    personnage = acheter_fournitures(personnage)
+    print ("Fin du Chapitre 1 ! Votre aventure commence à Poudlard")
+    return personnage
+
+if __name__ == "__main__":
+    lancer_chapitre_1()
