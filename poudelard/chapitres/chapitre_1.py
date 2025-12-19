@@ -61,8 +61,16 @@ def rencontrer_hagrid(personnage):
 
 def acheter_fournitures(personnage):
     print("Bienvenue sur le Chemin de Traverse !")
-    boutique = load_fichier("data/inventaire.json")
+    donnees_boutique = load_fichier("data/inventaire.json")
     objets_obligatoires = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
+
+    boutique = []
+    if type(donnees_boutique) == dict:
+        for nom in donnees_boutique:
+            prix = donnees_boutique[nom]
+            boutique.append({"nom": nom, "prix": prix})
+    else:
+        boutique = donnees_boutique
 
     while len(objets_obligatoires) > 0:
         print("Catalogue des objets disponibles :")
