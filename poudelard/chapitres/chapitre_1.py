@@ -66,9 +66,12 @@ def acheter_fournitures(personnage):
 
     boutique = []
     if type(donnees_boutique) == dict:
-        for nom in donnees_boutique:
-            prix = donnees_boutique[nom]
-            boutique.append({"nom": nom, "prix": prix})
+        for cle in donnees_boutique:
+            valeur = donnees_boutique[cle]
+            if type(valeur) == list:
+                boutique.append({"nom": valeur[0], "prix": valeur[1]})
+            else:
+                boutique.append({"nom": cle, "prix": valeur})
     else:
         boutique = donnees_boutique
 
