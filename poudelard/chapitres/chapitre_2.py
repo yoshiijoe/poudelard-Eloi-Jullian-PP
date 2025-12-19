@@ -1,49 +1,85 @@
 from poudelard.utils.input_utils import demander_choix
+from poudelard.univers.personnage import afficher_personnage
 
 
 def rencontrer_amis(joueur):
-    print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
+    print("\n--- Dans le Poudlard Express ---")
     print("Un garçon roux entre dans votre compartiment, l'air amical.")
 
-    choix_ron = demander_choix("Salut ! Moi c'est Ron Weasley. Tu veux bien qu'on s'assoie ensemble ?",
-                               ["Bien sûr, assieds-toi !", "Désolé, je préfère voyager seul."])
+    option_ron = ["Bien sûr, assieds-toi !", "Désolé, je préfère voyager seul."]
+    choix_ron = demander_choix("Salut ! Moi c'est Ron Weasley. Tu veux bien qu'on s'assoie ensemble ?", opt_ron)
 
-    if choix_ron == 1:
+    if choix_ron == option_ron[0]:
         print("Ron sourit : Génial ! Tu verras, Poudlard, c'est incroyable !")
-        joueur['Attributs']['loyauté'] += 1
+        joueur['Attributs']['loyaute'] += 1
     else:
         print("Ron hausse les épaules et va chercher une autre place.")
         joueur['Attributs']['ambition'] += 1
 
-    print("Une fille entre ensuite, portant déjà une pile de livres.")
+    print("\nUne fille entre ensuite, portant déjà une pile de livres.")
+    opt_hermione = ["Oui, j'adore apprendre !", "Euh... non, je préfère l'aventure."]
+    choix_hermione = demander_choix("Je suis Hermione Granger. Vous avez lu 'Histoire de la Magie' ?", opt_hermione)
 
-    choix_hermione = demander_choix(
-        "Bonjour, je m'appelle Hermione Granger. Vous avez déjà lu 'Histoire de la Magie' ?",
-        ["Oui, j'adore apprendre de nouvelles choses !", "Euh... non, je préfère les aventures aux bouquins."])
-
-    if choix_hermione == 1:
+    if choix_hermione == opt_hermione[0]:
         print("Hermione sourit : C'est fascinant, n'est-ce pas ?")
         joueur['Attributs']['intelligence'] += 1
     else:
-        print("Hermione fronce les sourcils : Il faudrait pourtant s'y mettre un jour !")
+        print("Hermione fronce les sourcils : Il faudrait pourtant s'y mettre !")
         joueur['Attributs']['courage'] += 1
 
-    print("Puis un garçon blond entre avec un air arrogant.")
+    print("\nPuis un garçon blond entre avec un air arrogant.")
+    opt_drago = ["Je lui serre la main.", "Je l'ignore.", "Je lui réponds avec arrogance."]
+    choix_drago = demander_choix("Je suis Drago Malefoy. Mieux vaut bien choisir ses amis, non ?", opt_drago)
 
-    choix_drago = demander_choix(
-        "Je suis Drago Malefoy. Mieux vaut bien choisir ses amis dès le départ, tu ne crois pas ?",
-        ["Je lui serre la main poliment.", "Je l'ignore complètement.", "Je lui réponds avec arrogance."])
-
-    if choix_drago == 1:
+    if choix_drago == opt_drago[0]:
         print("Drago vous regarde avec un air satisfait.")
         joueur['Attributs']['ambition'] += 1
-    elif choix_drago == 2:
+    elif choix_drago == opt_drago[1]:
         print("Drago fronce les sourcils, vexé : Tu le regretteras !")
-        joueur['Attributs']['loyauté'] += 1
+        joueur['Attributs']['loyaute'] += 1
     else:
         print("Drago semble furieux de votre audace.")
         joueur['Attributs']['courage'] += 1
 
-    print("Le train continue sa route. Le château de Poudlard se profile à l'horizon...")
-    print(
-        f"Tes choix semblent déjà en dire long sur ta personnalité !\nTes attributs mis à jour : {joueur['Attributs']}")
+
+def ceremonie_repartition(joueur):
+    print("\n" + "=" * 40)
+    print("   LA CÉRÉMONIE DE RÉPARTITION   ")
+    print("=" * 40)
+    print("Le Choixpeau Magique est posé sur votre tête...")
+
+    scores = joueur['Attributs']
+
+    maison_gagnante = ""
+    max_valeur = -1
+
+    for nom_attribut in scores:
+        valeur = scores[nom_attribut]
+        if valeur > max_valeur:
+            max_valeur = valeur
+            maison_gagnante = nom_attribut
+
+    maison = ""
+    if maison_gagnante == "courage":
+        maison = "Gryffondor"
+    elif maison_gagnante == "intelligence":
+        maison = "Serdaigle"
+    elif maison_gagnante == "loyaute":
+        maison = "Poufsouffle"
+    else:
+        maison = "Serpentard"
+
+    print(f"\nCHOIXPEAU : 'Difficile... très difficile... Mais je sais !'")
+    print(f"CHOIXPEAU : 'Ce sera... {maison} !'")
+
+    joueur["Maison"] = maison
+    return maison
+
+
+def lancer_chapitre_2(joueur):
+    rencontrer_amis(joueur)
+    ceremonie_repartition(joueur)
+    print("\nVoici votre profil mis à jour :")
+    afficher_personnage(joueur)
+    print(f"Maison : {joueur['Maison']}")
+    return joueur
