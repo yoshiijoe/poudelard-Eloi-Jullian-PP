@@ -41,7 +41,7 @@ def apprendre_sorts(joueur):
 
     for sort in nouveaux_sorts:
         joueur["Sortilèges"].append(sort)
-        print(f" ✨ {sort['nom']} ({sort['type']})")
+        print(f"  {sort['nom']} ({sort['type']})")
 
     print("\n" + "-" * 50)
     input("Appuyez sur Entrée pour consulter le détail de vos sorts...")
