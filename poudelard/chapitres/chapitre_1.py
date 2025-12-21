@@ -22,7 +22,7 @@ def creer_personnage():
     attributs = {
         "courage": courage,
         "intelligence": intelligence,
-        "loyaute": loyaute,
+        "loyauté": loyaute,
         "ambition": ambition
     }
 
