@@ -85,10 +85,7 @@ def repartition_maison(joueur, questions):
             meilleure_maison = maison
 
     return meilleure_maison
-
-
-
-
+        
 
 
 
