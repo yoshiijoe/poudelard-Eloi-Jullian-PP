@@ -85,3 +85,4 @@ def lancer_chapitre_2(joueur):
     afficher_personnage(joueur)
     print(f"Maison : {joueur['Maison']}")
     return joueur
+    
