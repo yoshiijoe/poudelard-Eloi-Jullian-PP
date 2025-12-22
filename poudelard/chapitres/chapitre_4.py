@@ -9,3 +9,4 @@ def creer_equipe(maison, equipe_date, est_joueur=False, joueur=None):
 
 def match_quidditch(personnage, maisons):
     pass
+    
