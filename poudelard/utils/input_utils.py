@@ -26,6 +26,7 @@ def demander_nombre(message, min_val=None, max_val=None):
         for c in chiffres:
             if c < '0' or c > '9':
                 est_valide = False
+                
                 break
         if not est_valide:
             print("Veuillez entrer uniquement des chiffres.")
