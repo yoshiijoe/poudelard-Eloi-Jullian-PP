@@ -1,4 +1,4 @@
-from utils import *
+from poudelard.utils.input_utils import demander_nombre
 
 maisons = {
         "Gryffondor": 0,
@@ -63,12 +63,12 @@ def repartition_maison(joueur, questions):
         for i in range(len(choix_possibles)):
             print("{}. {}".format(i + 1, choix_possibles[i]))
 
-        reponse = int(input("Ton choix : "))
+        reponse = demander_nombre("Ton choix : ", 1, len(choix_possibles))
 
         index_choisi = reponse - 1
-        maison_gagante_question = maisons_associees[index_choisi]
+        maison_gagnante_question = maisons_associees[index_choisi]
 
-        scores[maison_gagante_question] += 3
+        scores[maison_gagnante_question] += 3
         print()
 
     print("Résumé des scores :")
@@ -85,10 +85,7 @@ def repartition_maison(joueur, questions):
             meilleure_maison = maison
 
     return meilleure_maison
-
-
-
-
+        
 
 
 

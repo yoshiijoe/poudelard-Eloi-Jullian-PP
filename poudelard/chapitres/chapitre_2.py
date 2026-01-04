@@ -11,7 +11,7 @@ def rencontrer_amis(joueur):
 
     if choix_ron == option_ron[0]:
         print("Ron sourit : Génial ! Tu verras, Poudlard, c'est incroyable !")
-        joueur['Attributs']['loyaute'] += 1
+        joueur['Attributs']['loyauté'] += 1
     else:
         print("Ron hausse les épaules et va chercher une autre place.")
         joueur['Attributs']['ambition'] += 1
@@ -36,7 +36,7 @@ def rencontrer_amis(joueur):
         joueur['Attributs']['ambition'] += 1
     elif choix_drago == option_ron[1]:
         print("Drago fronce les sourcils, vexé : Tu le regretteras !")
-        joueur['Attributs']['loyaute'] += 1
+        joueur['Attributs']['loyauté'] += 1
     else:
         print("Drago semble furieux de votre audace.")
         joueur['Attributs']['courage'] += 1
@@ -64,7 +64,7 @@ def ceremonie_repartition(joueur):
         maison = "Gryffondor"
     elif maison_gagnante == "intelligence":
         maison = "Serdaigle"
-    elif maison_gagnante == "loyaute":
+    elif maison_gagnante == "loyauté":
         maison = "Poufsouffle"
     else:
         maison = "Serpentard"
@@ -85,3 +85,4 @@ def lancer_chapitre_2(joueur):
     afficher_personnage(joueur)
     print(f"Maison : {joueur['Maison']}")
     return joueur
+    

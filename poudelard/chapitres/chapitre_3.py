@@ -105,3 +105,4 @@ def lancer_chapitre_3(personnage, maisons):
     afficher_personnage(personnage)
 
     return personnage
+
