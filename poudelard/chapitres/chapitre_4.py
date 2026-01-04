@@ -1,7 +1,7 @@
 import json
 import random
-from univers.maison import actualiser_points_maison, afficher_maison_gagnante
-from univers.personnage import afficher_personnage
+from poudelard.univers.maison import actualiser_points_maison, afficher_maison_gagnante
+from poudelard.univers.personnage import afficher_personnage
 
 
 def creer_equipe(maison, equipe_data, est_joueur=False, joueur=None):
