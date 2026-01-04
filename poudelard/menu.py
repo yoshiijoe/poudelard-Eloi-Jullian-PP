@@ -1,37 +1,49 @@
-from poudelard.chapitres.chapitre_1 import lancer_chapitre_1
-from poudelard.chapitres.chapitre_2 import lancer_chapitre_2
-from poudelard.chapitres.chapitre_3 import lancer_chapitre_3
-from poudelard.utils.input_utils import demander_nombre
+from chapitres.chapitre_1 import lancer_chapitre_1
+from chapitres.chapitre_2 import lancer_chapitre_2
+from chapitres.chapitre_3 import lancer_chapitre_3
+from chapitres.chapitre_4 import lancer_chapitre4_quidditch
 
 
 def afficher_menu_principal():
-    print("\n" + "=" * 30)
-    print("       MENU PRINCIPAL")
-    print("=" * 30)
-    print("1. Lancer le Chapitre 1 – L’arrivée dans le monde magique.")
-    print("2. Quitter le jeu.")
-    print("=" * 30)
+    print("========================================")
+    print("      BIENVENUE A POUDLARD")
+    print("========================================")
+    print("1. Lancer l'aventure (Chapitres 1 à 4)")
+    print("2. Quitter le jeu")
+    print("========================================")
 
 
 def lancer_choix_menu():
     maisons = {
         "Gryffondor": 0,
-        "Serdaigle": 0,
+        "Serpentard": 0,
         "Poufsouffle": 0,
-        "Serpentard": 0
+        "Serdaigle": 0
     }
 
-    while True:
-        afficher_menu_principal()
-        choix = demander_nombre("Votre choix : ", 1, 2)
+    continuer = True
 
-        if choix == 1:
-            personnage = lancer_chapitre_1()
-            personnage = lancer_chapitre_2(personnage)
-            personnage = lancer_chapitre_3(personnage, maisons)
-            print("\nFin de l'aventure disponible pour le moment !")
-        elif choix == 2:
-            print("Merci d'avoir joué ! À bientôt jeune sorcier.")
-            break
+    while continuer:
+        afficher_menu_principal()
+        choix = input("Votre choix : ")
+
+        if choix == "1":
+            joueur = lancer_chapitre_1()
+
+            lancer_chapitre_2(joueur)
+
+            lancer_chapitre_3(joueur, maisons)
+
+            lancer_chapitre4_quidditch(joueur, maisons)
+
+            print()
+            print("Félicitations ! Vous avez terminé l'aventure.")
+            input("Appuyez sur Entrée pour revenir au menu...")
+
+        elif choix == "2":
+            print("Au revoir et à bientôt à Poudlard !")
+            continuer = False
+
         else:
-            print("Choix invalide, veuillez recommencer.")
+            print("Choix invalide. Veuillez taper 1 ou 2.")
+            print()
