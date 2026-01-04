@@ -1,11 +1,12 @@
+import json
 import random
-from poudelard.utils.input_utils import load_fichier, demander_texte
 from poudelard.univers.maison import actualiser_points_maison, afficher_maison_gagnante
 from poudelard.univers.personnage import afficher_personnage
 
 
 def apprendre_sorts(joueur):
-    tous_les_sorts = load_fichier("data/sorts.json")
+    with open("../data/sorts.json", "r", encoding="utf-8") as f:
+        tous_les_sorts = json.load(f)
 
     offensifs = []
     defensifs = []
@@ -36,26 +37,28 @@ def apprendre_sorts(joueur):
     print("\n" + "-" * 50)
     print("      VOS PREMIERS COURS DE MAGIE")
     print("-" * 50)
-    print("Après plusieurs cours et de travaille acharnée, ")
+    print("Après plusieurs cours et de travail acharné, ")
     print("vous avez appris 5 nouveaux sortilèges :\n")
 
     for sort in nouveaux_sorts:
         joueur["Sortilèges"].append(sort)
-        print(f"  {sort['nom']} ({sort['type']})")
+        print("  {} ({})".format(sort['nom'], sort['type']))
 
     print("\n" + "-" * 50)
     input("Appuyez sur Entrée pour consulter le détail de vos sorts...")
 
     print("\nDESCRIPTION DE VOS NOUVEAUX POUVOIRS :")
     for sort in nouveaux_sorts:
-        print(f"- {sort['nom']} : {sort['description']}")
+        print("- {} : {}".format(sort['nom'], sort['description']))
 
     print("-" * 50)
     input("\nAppuyez sur Entrée pour passer au Quiz de Magie !")
 
 
 def quiz_magie(joueur):
-    toutes_les_questions = load_fichier("data/quiz_magie.json")
+    with open("../data/quiz_magie.json", "r", encoding="utf-8") as f:
+        toutes_les_questions = json.load(f)
+
     questions_posees = []
 
     while len(questions_posees) < 4:
@@ -71,15 +74,15 @@ def quiz_magie(joueur):
 
     for i in range(len(questions_posees)):
         q_data = questions_posees[i]
-        print(f"QUESTION {i + 1}: {q_data['question']}")
+        print("QUESTION {}: {}".format(i + 1, q_data['question']))
 
-        reponse_joueur = demander_texte("Votre réponse > ")
+        reponse_joueur = input("Votre réponse > ")
 
-        if reponse_joueur.lower() == q_data["reponse"].lower():
+        if reponse_joueur.lower().strip() == q_data["reponse"].lower().strip():
             print(" Bonne réponse ! +25 points.")
             score = score + 25
         else:
-            print(f" Mauvaise réponse. C'était : {q_data['reponse']}")
+            print(" Mauvaise réponse. C'était : {}".format(q_data['reponse']))
         print()
 
     return score
@@ -93,10 +96,10 @@ def lancer_chapitre_3(personnage, maisons):
     maison_joueur = personnage["Maison"]
     actualiser_points_maison(maisons, maison_joueur, points_gagnes)
 
-    print(f"\nScore final : {points_gagnes} points pour {maison_joueur} !")
+    print("\nScore final : {} points pour {} !".format(points_gagnes, maison_joueur))
     afficher_maison_gagnante(maisons)
 
-    input("--- Appuyez sur ENTREE pour voir votre profil mise à jour ---" )
+    input("--- Appuyez sur ENTREE pour voir votre profil mis à jour ---")
 
     print("\nVoici votre profil mis à jour :")
     afficher_personnage(personnage)
