@@ -17,7 +17,6 @@ def creer_equipe(maison, equipe_data, est_joueur=False, joueur=None):
     if est_joueur == True and joueur is not None:
         nouveaux_joueurs = []
 
-        # Utilisation de format() au lieu de f-string
         nom_complet = "{} {} (Attrapeur)".format(joueur["Prenom"], joueur["Nom"])
         nouveaux_joueurs.append(nom_complet)
 
@@ -30,14 +29,14 @@ def creer_equipe(maison, equipe_data, est_joueur=False, joueur=None):
 
 
 def tentative_marque(equipe_attaque, equipe_defense, joueur_est_joueur=False):
-    proba_but = random.randint(1, 10)  # Autorisé par la section 1.1 [cite: 41]
+    proba_but = random.randint(1, 10)
 
     if proba_but >= 6:
         buteur = ""
         if joueur_est_joueur == True:
             buteur = equipe_attaque["joueurs"][0]
         else:
-            buteur = random.choice(equipe_attaque["joueurs"])  # Autorisé par la section 1.1 [cite: 45]
+            buteur = random.choice(equipe_attaque["joueurs"])
 
         equipe_attaque["score"] += 10
         equipe_attaque["a_marque"] += 1
@@ -78,14 +77,12 @@ def afficher_equipe(maison, equipe):
 
 
 def match_quidditch(joueur, maisons):
-    # Lecture du fichier JSON (Autorisé section 1.2 [cite: 54])
     with open("../data/equipes_quidditch.json", "r", encoding="utf-8") as f:
         donnees_equipes = json.load(f)
 
     maison_joueur = joueur["Maison"]
 
     maisons_adverses = []
-    # Parcours des clés du dictionnaire (CM5)
     for m in donnees_equipes.keys():
         if m != maison_joueur:
             maisons_adverses.append(m)
@@ -99,7 +96,6 @@ def match_quidditch(joueur, maisons):
     equipe_adversaire = creer_equipe(nom_adversaire, data_adversaire, False)
 
     print()
-    # RETRAIT DE .upper() ICI pour respecter strictement la consigne
     print("MATCH DE QUIDDITCH : {} VS {}".format(maison_joueur, nom_adversaire))
     print()
 
@@ -115,7 +111,6 @@ def match_quidditch(joueur, maisons):
     match_termine = False
     tour = 1
 
-    # Boucle de jeu (Max 20 tours)
     while tour <= 20 and match_termine == False:
         print("--- Tour {} ---".format(tour))
 
