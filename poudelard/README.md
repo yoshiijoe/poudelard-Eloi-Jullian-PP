@@ -8,10 +8,9 @@ sur le Chemin de Traverse jusqu'au combat final dans la Chambre des Secrets.
 #### Contributeurs:
 Adrien JULLIAN - Philéas ELOI
 
-Installation
-
-    Cloner le dépôt :
-git clone https://github.com/votre-utilisateur/poudelard.git
+#### Installation:
+Cloner le dépôt:
+https://github.com/yoshiijoe/poudelard-Eloi-Jullian-PP/tree/main/poudelard
 
 #### Utilisation:
 Pour lancer le jeu, exécutez le fichier main.py
@@ -29,5 +28,11 @@ Philéas Eloi : maison.py, personnage.py, chapitre2.py chapitre_3.py, chapitre_4
 
 #### Contrôle, Tests et Validation:
 Le projet utilise un module dédié input_utils.py pour garantir la stabilité du programme :
-    Validation de type : Conversion manuelle des chaînes en entiers pour éviter les plantages.
-    Contrôle d'intervalle : Les fonctions vérifient que les choix sont compris dans les bornes autorisées (ex: 1 à 10 pour les attributs).
+    - Validation de type : Conversion manuelle des chaînes en entiers pour éviter les plantages.
+    - Contrôle d'intervalle : Les fonctions vérifient que les choix sont compris dans les bornes autorisées (ex: 1 à 10 pour les attributs).
+
+#### Stratégies de Test
+Tests de saisie : Saisie de lettres là où des nombres sont attendus pour vérifier que le programme ne plante pas.
+Tests de logique : Vérification que les points de maison sont correctement attribués après le quiz et le Quidditch.
+Cas spécifique : Test du combat final pour s'assurer que les probabilités d'esquive sont équilibrées.
+![img.png](img.png)
