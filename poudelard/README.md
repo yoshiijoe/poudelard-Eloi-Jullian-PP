@@ -37,10 +37,10 @@ probabilités/esquives).
 
 #### Chronologie du Projet:
 
-Semaine 1 : Architecture, input_utils, personnage.py et maison.py
-Semaine 2 : Chapitres 1 et 2
-Semaine 3 : Chapitres 3 et 4
-Semaine 4 : Chapitre 5 et export final
+- **Semaine 1** : Architecture, input_utils, personnage.py et maison.py
+- **Semaine 2** : Chapitres 1 et 2
+- **Semaine 3** : Chapitres 3 et 4
+- **Semaine 4** : Chapitre 5 et export final
 
 
 **Répartition des Tâches :**
