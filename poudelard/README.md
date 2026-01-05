@@ -8,6 +8,11 @@ sur le Chemin de Traverse jusqu'au combat final dans la Chambre des Secrets.
 #### Contributeurs:
 Adrien JULLIAN - Philéas ELOI
 
+Installation
+
+    Cloner le dépôt :
+git clone https://github.com/votre-utilisateur/poudelard.git
+
 #### Utilisation:
 Pour lancer le jeu, exécutez le fichier main.py
 
