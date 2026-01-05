@@ -16,4 +16,6 @@ Fonctionnalités Principales:
    Cérémonie de Répartition : Algorithme déterminant la maison en fonction des choix passés.
    Système de Combat : Duel au tour par tour contre le Basilic avec gestion de probabilités et d'esquives.
 
-Répartition des Tâches
+Répartition des Tâches:
+Adrien JULLIAN : input_utils.py,chapitre_1.py et chapitre_5_extension.py, main.py, menu.py
+Philéas Eloi : maison.py, personnage.py, chapitre2.py chapitre_3.py, chapitre_4.py
