@@ -15,7 +15,7 @@ Adrien JULLIAN - Philéas ELOI
 
 #### Installation :
 
-1. Cloner le dépôt : https://github.com/yoshiijoe/poudelard-Eloi-Jullian-PP.git
+1. Cloner le dépôt : https://github.com/yoshiijoe/poudelard-Eloi-Jullian-PP/tree/main/poudelard
 2. Ouvrir le dossier poudelard dans votre IDE (PyCharm).
 
 
