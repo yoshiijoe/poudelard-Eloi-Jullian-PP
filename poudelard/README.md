@@ -38,5 +38,4 @@ Cas spécifique : Test du combat final pour s'assurer que les probabilités d'es
 
 ![img_1.png](img_1.png)
 ![img.png](img.png)
-![img.png](img.png)
 ![img_2.png](img_2.png)
