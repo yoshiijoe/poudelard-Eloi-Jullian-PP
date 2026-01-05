@@ -21,7 +21,7 @@ Adrien JULLIAN - Philéas ELOI
 
 #### Utilisation :
 
-Pour lancer le jeu, exécutez le fichier main.py à la racine du projet.
+Pour lancer le jeu, exécutez le fichier main.py.
 
 
 #### Fonctionnalités Principales :
