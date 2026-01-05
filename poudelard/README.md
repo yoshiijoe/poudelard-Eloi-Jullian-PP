@@ -35,4 +35,8 @@ Le projet utilise un module dédié input_utils.py pour garantir la stabilité d
 Tests de saisie : Saisie de lettres là où des nombres sont attendus pour vérifier que le programme ne plante pas.
 Tests de logique : Vérification que les points de maison sont correctement attribués après le quiz et le Quidditch.
 Cas spécifique : Test du combat final pour s'assurer que les probabilités d'esquive sont équilibrées.
+
+![img_1.png](img_1.png)
 ![img.png](img.png)
+![img.png](img.png)
+![img_2.png](img_2.png)
