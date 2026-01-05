@@ -5,7 +5,7 @@ from poudelard.univers.personnage import afficher_personnage
 
 
 def apprendre_sorts(joueur):
-    with open("../data/sorts.json", "r", encoding="utf-8") as f:
+    with open("data/sorts.json", "r", encoding="utf-8") as f:
         tous_les_sorts = json.load(f)
 
     offensifs = []
@@ -21,11 +21,17 @@ def apprendre_sorts(joueur):
             utilitaires.append(sort)
 
     nouveaux_sorts = []
-    nouveaux_sorts.append(random.choice(offensifs))
-    nouveaux_sorts.append(random.choice(defensifs))
+
+    index_off = random.randint(0, len(offensifs) - 1)
+    nouveaux_sorts.append(offensifs[index_off])
+
+    index_def = random.randint(0, len(defensifs) - 1)
+    nouveaux_sorts.append(defensifs[index_def])
 
     while len(nouveaux_sorts) < 5:
-        sort_choisi = random.choice(utilitaires)
+        index_util = random.randint(0, len(utilitaires) - 1)
+        sort_choisi = utilitaires[index_util]
+
         est_deja_pris = False
         for s in nouveaux_sorts:
             if s["nom"] == sort_choisi["nom"]:
@@ -56,14 +62,21 @@ def apprendre_sorts(joueur):
 
 
 def quiz_magie(joueur):
-    with open("../data/quiz_magie.json", "r", encoding="utf-8") as f:
+    with open("data/quiz_magie.json", "r", encoding="utf-8") as f:
         toutes_les_questions = json.load(f)
 
     questions_posees = []
 
     while len(questions_posees) < 4:
-        question_hasard = random.choice(toutes_les_questions)
-        if question_hasard not in questions_posees:
+        index_hasard = random.randint(0, len(toutes_les_questions) - 1)
+        question_hasard = toutes_les_questions[index_hasard]
+
+        deja_posee = False
+        for q in questions_posees:
+            if q["question"] == question_hasard["question"]:
+                deja_posee = True
+
+        if deja_posee == False:
             questions_posees.append(question_hasard)
 
     score = 0
@@ -78,7 +91,7 @@ def quiz_magie(joueur):
 
         reponse_joueur = input("Votre réponse > ")
 
-        if reponse_joueur.lower().strip() == q_data["reponse"].lower().strip():
+        if reponse_joueur == q_data["reponse"]:
             print(" Bonne réponse ! +25 points.")
             score = score + 25
         else:

@@ -1,55 +1,77 @@
 import json
 
+
 def demander_texte(message):
-    texte = input(message).strip()
-    while len(texte) == 0:
-        print("Erreur : La saisie ne peut pas être vide.")
-        texte = input(message).strip()
+    texte = ""
+    saisie_valide = False
+
+    while saisie_valide == False:
+        texte = input(message)
+        if len(texte) > 0:
+            saisie_valide = True
+        else:
+            print("Erreur : La saisie ne peut pas être vide.")
+
     return texte
 
 
 def demander_nombre(message, min_val=None, max_val=None):
-    while True:
-        saisie = input(message).strip()
+    nombre = 0
+    saisie_valide = False
+
+    while saisie_valide == False:
+        saisie = input(message)
+
         if len(saisie) == 0:
             print("Erreur : La saisie ne peut pas être vide.")
-            continue
-        est_negatif = False
-        chiffres = saisie
-        if saisie[0] == '-':
-            est_negatif = True
-            chiffres = saisie[1:]
-        if len(chiffres) == 0:
-            print("Veuillez entrer un nombre valide.")
-            continue
-        est_valide = True
-        for c in chiffres:
-            if c < '0' or c > '9':
-                est_valide = False
-                
-                break
-        if not est_valide:
-            print("Veuillez entrer uniquement des chiffres.")
-            continue
-        nombre = 0
-        for c in chiffres:
-            nombre = nombre * 10 + (ord(c) - ord('0'))
-        if est_negatif:
-            nombre = -nombre
-        if min_val is not None and nombre < min_val:
-            print(f"Veuillez entrer un nombre entre {min_val} et {max_val}.")
-            continue
-        if max_val is not None and nombre > max_val:
-            print(f"Veuillez entrer un nombre entre {min_val} et {max_val}.")
-            continue
-        return nombre
+        else:
+            index_depart = 0
+            if saisie[0] == '-':
+                index_depart = 1
+
+            est_numerique = True
+
+            if index_depart == 1 and len(saisie) == 1:
+                est_numerique = False
+
+            for i in range(index_depart, len(saisie)):
+                c = saisie[i]
+                if c < '0':
+                    est_numerique = False
+                if c > '9':
+                    est_numerique = False
+
+            if est_numerique == False:
+                print("Veuillez entrer uniquement des chiffres.")
+            else:
+                valeur = int(saisie)
+
+                erreur_borne = False
+                if min_val != None:
+                    if valeur < min_val:
+                        erreur_borne = True
+
+                if max_val != None:
+                    if valeur > max_val:
+                        erreur_borne = True
+
+                if erreur_borne == True:
+                    print("Veuillez entrer un nombre entre {} et {}.".format(min_val, max_val))
+                else:
+                    nombre = valeur
+                    saisie_valide = True
+
+    return nombre
+
 
 def demander_choix(message, options):
     print(message)
     for i in range(len(options)):
-        print(f"{i + 1}. {options[i]}")
+        print("{}. {}".format(i + 1, options[i]))
+
     choix_numero = demander_nombre("Votre choix : ", 1, len(options))
     return options[choix_numero - 1]
+
 
 def load_fichier(chemin_fichier):
     with open(chemin_fichier, 'r', encoding='utf-8') as f:

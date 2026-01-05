@@ -5,25 +5,34 @@ from poudelard.univers.personnage import afficher_personnage
 
 
 def creer_equipe(maison, equipe_data, est_joueur=False, joueur=None):
+    liste_joueurs_propre = []
+
+    if type(equipe_data) == dict:
+        for cle in equipe_data:
+            liste_joueurs_propre.append(equipe_data[cle])
+    else:
+        for j in equipe_data:
+            liste_joueurs_propre.append(j)
+
+    if est_joueur == True and joueur is not None:
+        equipe_finale = []
+
+        nom_complet = "{} {} (Attrapeur)".format(joueur["Prenom"], joueur["Nom"])
+        equipe_finale.append(nom_complet)
+
+        for membre in liste_joueurs_propre:
+            equipe_finale.append(membre)
+
+        liste_joueurs_propre = equipe_finale
+
     equipe = {
         "nom": maison,
         "score": 0,
         "a_marque": 0,
         "a_stoppe": 0,
         "attrape_vifdor": False,
-        "joueurs": equipe_data
+        "joueurs": liste_joueurs_propre
     }
-
-    if est_joueur == True and joueur is not None:
-        nouveaux_joueurs = []
-
-        nom_complet = "{} {} (Attrapeur)".format(joueur["Prenom"], joueur["Nom"])
-        nouveaux_joueurs.append(nom_complet)
-
-        for membre in equipe_data:
-            nouveaux_joueurs.append(membre)
-
-        equipe["joueurs"] = nouveaux_joueurs
 
     return equipe
 
@@ -36,15 +45,17 @@ def tentative_marque(equipe_attaque, equipe_defense, joueur_est_joueur=False):
         if joueur_est_joueur == True:
             buteur = equipe_attaque["joueurs"][0]
         else:
-            buteur = random.choice(equipe_attaque["joueurs"])
+            liste_joueurs = equipe_attaque["joueurs"]
+            index_buteur = random.randint(0, len(liste_joueurs) - 1)
+            buteur = liste_joueurs[index_buteur]
 
-        equipe_attaque["score"] += 10
-        equipe_attaque["a_marque"] += 1
+        equipe_attaque["score"] = equipe_attaque["score"] + 10
+        equipe_attaque["a_marque"] = equipe_attaque["a_marque"] + 1
 
         print("{} marque un but pour {} ! (+10 points)".format(buteur, equipe_attaque["nom"]))
 
     else:
-        equipe_defense["a_stoppe"] += 1
+        equipe_defense["a_stoppe"] = equipe_defense["a_stoppe"] + 1
         print("{} bloque l'attaque !".format(equipe_defense["nom"]))
 
 
@@ -56,9 +67,15 @@ def apparition_vifdor():
 
 
 def attraper_vifdor(e1, e2):
-    equipe_gagnante = random.choice([e1, e2])
+    equipe_gagnante = {}
 
-    equipe_gagnante["score"] += 150
+    tirage = random.randint(1, 2)
+    if tirage == 1:
+        equipe_gagnante = e1
+    else:
+        equipe_gagnante = e2
+
+    equipe_gagnante["score"] = equipe_gagnante["score"] + 150
     equipe_gagnante["attrape_vifdor"] = True
 
     return equipe_gagnante
@@ -77,17 +94,18 @@ def afficher_equipe(maison, equipe):
 
 
 def match_quidditch(joueur, maisons):
-    with open("../data/equipes_quidditch.json", "r", encoding="utf-8") as f:
+    with open("data/equipes_quidditch.json", "r", encoding="utf-8") as f:
         donnees_equipes = json.load(f)
 
     maison_joueur = joueur["Maison"]
 
     maisons_adverses = []
-    for m in donnees_equipes.keys():
+    for m in donnees_equipes:
         if m != maison_joueur:
             maisons_adverses.append(m)
 
-    nom_adversaire = random.choice(maisons_adverses)
+    index_adv = random.randint(0, len(maisons_adverses) - 1)
+    nom_adversaire = maisons_adverses[index_adv]
 
     data_joueur = donnees_equipes[maison_joueur]
     data_adversaire = donnees_equipes[nom_adversaire]
@@ -131,7 +149,7 @@ def match_quidditch(joueur, maisons):
         if match_termine == False:
             input("Appuyez sur Entrée pour le tour suivant...")
             print()
-            tour += 1
+            tour = tour + 1
 
     print()
     print("--- FIN DU MATCH ---")
