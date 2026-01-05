@@ -2,6 +2,7 @@ from chapitres.chapitre_1 import lancer_chapitre_1
 from chapitres.chapitre_2 import lancer_chapitre_2
 from chapitres.chapitre_3 import lancer_chapitre_3
 from chapitres.chapitre_4 import lancer_chapitre4_quidditch
+from poudelard.chapitres.chapitre_5_extension import lancer_chapitre_5
 
 
 def afficher_menu_principal():
@@ -35,6 +36,8 @@ def lancer_choix_menu():
             lancer_chapitre_3(joueur, maisons)
 
             lancer_chapitre4_quidditch(joueur, maisons)
+
+            lancer_chapitre_5(joueur, maisons)
 
             print()
             print("Félicitations ! Vous avez terminé l'aventure.")
