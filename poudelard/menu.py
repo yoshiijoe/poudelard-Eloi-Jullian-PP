@@ -9,7 +9,7 @@ def afficher_menu_principal():
     print("========================================")
     print("      BIENVENUE A POUDLARD")
     print("========================================")
-    print("1. Lancer l'aventure (Chapitres 1 à 4)")
+    print("1. Lancer l'aventure (Chapitres 1 à 5)")
     print("2. Quitter le jeu")
     print("========================================")
 
