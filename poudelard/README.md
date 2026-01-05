@@ -1,4 +1,4 @@
-Poudelard
+# Poudelard
 
 Description : jeu de rôle textuel développé en Python où le joueur incarne un jeune sorcier.
 Le jeu suit une progression en 5 chapitres : de l'achat des fournitures 
@@ -19,3 +19,8 @@ Fonctionnalités Principales:
 Répartition des Tâches:
 Adrien JULLIAN : input_utils.py,chapitre_1.py et chapitre_5_extension.py, main.py, menu.py
 Philéas Eloi : maison.py, personnage.py, chapitre2.py chapitre_3.py, chapitre_4.py
+
+Contrôle, Tests et Validation:
+Le projet utilise un module dédié input_utils.py pour garantir la stabilité du programme :
+    Validation de type : Conversion manuelle des chaînes en entiers pour éviter les plantages.
+    Contrôle d'intervalle : Les fonctions vérifient que les choix sont compris dans les bornes autorisées (ex: 1 à 10 pour les attributs).
