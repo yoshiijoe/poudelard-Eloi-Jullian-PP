@@ -9,7 +9,7 @@ def combat_basilic(joueur):
     combat_en_cours = True
     epee_disponible = False
 
-    print("\nTom Jedusor invoque le Basilic il semble aussi long qu'une ramede métro !")
+    print("\nTom Jedusor invoque le Basilic il semble aussi long qu'une rame de métro !")
     print("Fumseck le Phénix survole la pièce et crève les yeux du serpent !")
     print("Le Basilic est aveuglé, mais il peut toujours vous entendre et vous mordre.")
 
@@ -51,7 +51,7 @@ def combat_basilic(joueur):
             if chance_epee > 6:
                 degats = random.randint(40, 60)
                 pv_basilic -= degats
-                print(f"COUP CRITIQUE ! Vous enfoncez l'épée dans le palais du Basilic ! -{degats} PV.")
+                print(f"Vous enfoncez l'épée dans le palais du Basilic ! -{degats} PV.")
             else:
                 print("L'épée glisse sur les écailles du monstre !")
 
@@ -75,7 +75,8 @@ def conclusion_aventure(joueur, victoire):
         print("\n" + "=" * 50)
         print("      FÉLICITATIONS JEUNE SORCIER")
         print("=" * 50)
-        print(f"Grâce à votre {joueur['Maison']}, vous avez sauvé Poudlard.")
+        print(f"Grâce à votre courage et à l'honneur de {joueur['Maison']},")
+        print(f"vous, {joueur['Prenom']} {joueur['Nom']}, avez sauvé Poudlard.")
         print("Tom Jedusor disparaît dans un cri alors que vous détruisez son journal.")
         print("L'année se termine sous les acclamations de vos amis.")
         print("=" * 50)
