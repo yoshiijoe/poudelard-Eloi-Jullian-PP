@@ -1,6 +1,7 @@
 from poudelard.utils.input_utils import demander_texte, demander_nombre, demander_choix, load_fichier
 from poudelard.univers.personnage import initialiser_personnage, afficher_personnage, modifier_argent, ajouter_objet
 
+
 def introduction():
     print("")
     print("Bienvenue jeune sorcier dans le monde magique.")
@@ -8,6 +9,7 @@ def introduction():
     print("Alors choisi bien et bonne chance !")
     print("")
     input("--- Appuyez sur ENTREE pour commencer votre aventure ---")
+
 
 def creer_personnage():
     nom = demander_texte("Choisi ton nom jeune sorcier : ")
@@ -49,10 +51,13 @@ def recevoir_lettre():
         print("Le magicien Marius apparaît pour la première fois.")
         print("Il vous jette un sort, vous ne pourrez plus jamais aller en cours à Poudlard.")
         print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
-        exit()
+        return False
+
+    return True
+
 
 def rencontrer_hagrid(personnage):
-    print(f"Hagrid: - Salut {personnage['Prenom']}!")
+    print("Hagrid: - Salut {}!".format(personnage['Prenom']))
     print("- Je suis venu t'aider à faire tes achats sur le Chemin de Traverse.")
     print("")
 
@@ -61,6 +66,7 @@ def rencontrer_hagrid(personnage):
     choix = demander_choix("Voulez-vous suivre Hagrid ?", options)
     if choix == "Non":
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
+
 
 def acheter_fournitures(personnage):
     print("Bienvenue sur le Chemin de Traverse !")
@@ -78,36 +84,56 @@ def acheter_fournitures(personnage):
     else:
         boutique = donnees_boutique
 
-    while len(objets_obligatoires) > 0:
+    jeu_continue = True
+
+    while len(objets_obligatoires) > 0 and jeu_continue == True:
         print("Catalogue des objets disponibles :")
         i = 0
         for objet in boutique:
             i = i + 1
-            print(f"{i}. {objet['nom']} - {objet['prix']} galions")
+            print("{}. {} - {} galions".format(i, objet['nom'], objet['prix']))
 
-        print(f"Vous avez {personnage['Argent']} galions.")
-        chaine_objets = ", ".join(objets_obligatoires)
-        print(f"Objets obligatoires restant à acheter : {chaine_objets}")
+        print("Vous avez {} galions.".format(personnage['Argent']))
+
+        chaine_objets = ""
+        premier_element = True
+        for obj in objets_obligatoires:
+            if premier_element == False:
+                chaine_objets = chaine_objets + ", "
+            chaine_objets = chaine_objets + obj
+            premier_element = False
+
+        print("Objets obligatoires restant à acheter : {}".format(chaine_objets))
 
         choix = demander_nombre("Entrez le numéro de l'objet à acheter : ", 1, len(boutique))
         objet_choisi = boutique[choix - 1]
 
         if personnage['Argent'] < objet_choisi['prix']:
-            print("Vous n'avez pas assez d'argent, Gringotts ne veux pas vous accordez de prêt (vous n'avez pas de déclaration de revenus).")
+            print("Vous n'avez pas assez d'argent, Gringotts ne veux pas vous accordez de prêt.")
             print("Vous ne pouvez pas aller à Poudlard.")
             print("Fin de la partie.")
-            exit()
+            jeu_continue = False
+            return None
         else:
             modifier_argent(personnage, -objet_choisi['prix'])
             ajouter_objet(personnage, "Inventaire", objet_choisi['nom'])
-            print(f"Vous avez acheté : {objet_choisi['nom']} (-{objet_choisi['prix']} galions).")
+            print("Vous avez acheté : {} (-{} galions).".format(objet_choisi['nom'], objet_choisi['prix']))
 
-            if objet_choisi['nom'] in objets_obligatoires:
-                objets_obligatoires.remove(objet_choisi['nom'])
+            est_obligatoire = False
+            for obj in objets_obligatoires:
+                if obj == objet_choisi['nom']:
+                    est_obligatoire = True
+
+            if est_obligatoire == True:
+                nouvelle_liste = []
+                for obj in objets_obligatoires:
+                    if obj != objet_choisi['nom']:
+                        nouvelle_liste.append(obj)
+                objets_obligatoires = nouvelle_liste
 
     print("Tous les objets obligatoires ont été achetés !")
     print("Il est temps de choisir votre animal de compagnie pour Poudlard !")
-    print(f"Vous avez {personnage['Argent']} galions.")
+    print("Vous avez {} galions.".format(personnage['Argent']))
     print("Voici les animaux disponibles :")
     print("1. Chouette - 20 galions")
     print("2. Chat - 15 galions")
@@ -134,23 +160,35 @@ def acheter_fournitures(personnage):
     if personnage['Argent'] < prix_animal:
         print("Vous n'avez pas assez d'argent pour cet animal... C'est dommage.")
         print("Fin de la partie.")
-        exit()
+        return None
 
     modifier_argent(personnage, -prix_animal)
     ajouter_objet(personnage, "Inventaire", nom_animal)
-    print(f"Vous avez choisi : {nom_animal} (-{prix_animal} galions).")
+    print("Vous avez choisi : {} (-{} galions).".format(nom_animal, prix_animal))
 
     print("Tous les objets obligatoires ont été achetés avec succès ! Voici votre inventaire final :")
     afficher_personnage(personnage)
     return personnage
 
+
 def lancer_chapitre_1():
     introduction()
     personnage = creer_personnage()
+
     input("--- Appuyez sur ENTREE pour entrer dans l'histoire ---")
-    recevoir_lettre()
+
+    suite_aventure = recevoir_lettre()
+
+    if suite_aventure == False:
+        return None
+
     rencontrer_hagrid(personnage)
+
     input("--- Appuyez sur ENTREE pour aller au Chemin de Traverse ---")
+
     personnage = acheter_fournitures(personnage)
-    print ("Fin du Chapitre 1 ! Votre aventure commence à Poudlard")
+
+    if personnage is not None:
+        print("Fin du Chapitre 1 ! Votre aventure commence à Poudlard")
+
     return personnage
