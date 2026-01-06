@@ -105,7 +105,7 @@ def acheter_fournitures(personnage):
 
         print("Objets obligatoires restant à acheter : {}".format(chaine_objets))
 
-        choix = demander_nombre("Entrez le numéro de l'objet à achete : ", 1, len(boutique))
+        choix = demander_nombre("Entrez le numéro de l'objet à acheter : ", 1, len(boutique))
         objet_choisi = boutique[choix - 1]
 
         if personnage['Argent'] < objet_choisi['prix']:
