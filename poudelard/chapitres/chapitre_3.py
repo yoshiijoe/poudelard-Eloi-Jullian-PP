@@ -40,9 +40,7 @@ def apprendre_sorts(joueur):
         if est_deja_pris == False:
             nouveaux_sorts.append(sort_choisi)
 
-    print("\n" + "-" * 50)
     print("      VOS PREMIERS COURS DE MAGIE")
-    print("-" * 50)
     print("Après plusieurs cours et de travail acharné, ")
     print("vous avez appris 5 nouveaux sortilèges :\n")
 
@@ -50,14 +48,12 @@ def apprendre_sorts(joueur):
         joueur["Sortilèges"].append(sort)
         print("  {} ({})".format(sort['nom'], sort['type']))
 
-    print("\n" + "-" * 50)
     input("Appuyez sur Entrée pour consulter le détail de vos sorts...")
 
     print("\nDESCRIPTION DE VOS NOUVEAUX POUVOIRS :")
     for sort in nouveaux_sorts:
         print("- {} : {}".format(sort['nom'], sort['description']))
 
-    print("-" * 50)
     input("\nAppuyez sur Entrée pour passer au Quiz de Magie !")
 
 
@@ -80,9 +76,7 @@ def quiz_magie(joueur):
             questions_posees.append(question_hasard)
 
     score = 0
-    print("\n" + "-" * 50)
     print("          LE QUIZ DE MAGIE")
-    print("-" * 50)
     print("Répondez aux 4 questions pour gagner des points.\n")
 
     for i in range(len(questions_posees)):
