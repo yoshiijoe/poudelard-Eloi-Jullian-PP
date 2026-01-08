@@ -2,7 +2,7 @@ from poudelard.utils.input_utils import demander_choix
 from poudelard.univers.personnage import afficher_personnage
 
 def rencontrer_amis(joueur):
-    print("\n--- Dans le Poudlard Express ---")
+    print("\n Dans le Poudlard Express ")
     print("Un garçon roux entre dans votre compartiment, l'air amical.")
 
     option_ron = ["Bien sûr, assieds-toi !", "Désolé, je préfère voyager seul."]
@@ -42,9 +42,7 @@ def rencontrer_amis(joueur):
 
 
 def ceremonie_repartition(joueur):
-    print("\n" + "=" * 40)
     print("   LA CÉRÉMONIE DE RÉPARTITION   ")
-    print("=" * 40)
     print("Le Choixpeau Magique est posé sur votre tête...\n")
 
     scores = joueur['Attributs']
@@ -77,9 +75,9 @@ def ceremonie_repartition(joueur):
 
 def lancer_chapitre_2(joueur):
     rencontrer_amis(joueur)
-    input("--- Appuyez sur ENTREE pour passer à la suite ---")
+    input(" Appuyez sur ENTREE pour passer à la suite ")
     ceremonie_repartition(joueur)
-    input("--- Appuyez sur ENTREE pour voir votre profil mise à jour ---")
+    input(" Appuyez sur ENTREE pour voir votre profil mise à jour ")
     print("\nVoici votre profil mis à jour :")
     afficher_personnage(joueur)
     print("Maison : {}".format(joueur['Maison']))

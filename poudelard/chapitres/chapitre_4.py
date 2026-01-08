@@ -130,7 +130,7 @@ def match_quidditch(joueur, maisons):
     tour = 1
 
     while tour <= 20 and match_termine == False:
-        print("--- Tour {} ---".format(tour))
+        print(" Tour {} ".format(tour))
 
         tentative_marque(equipe_joueur, equipe_adversaire, True)
 
@@ -152,7 +152,7 @@ def match_quidditch(joueur, maisons):
             tour = tour + 1
 
     print()
-    print("--- FIN DU MATCH ---")
+    print(" FIN DU MATCH ")
     afficher_score(equipe_joueur, equipe_adversaire)
     print()
 
@@ -180,9 +180,7 @@ def match_quidditch(joueur, maisons):
 
 
 def lancer_chapitre4_quidditch(joueur, maisons):
-    print("==================================================")
     print("      CHAPITRE 4 : LA GLOIRE DU QUIDDITCH")
-    print("==================================================")
     print()
 
     match_quidditch(joueur, maisons)

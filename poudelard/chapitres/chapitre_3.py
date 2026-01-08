@@ -112,7 +112,7 @@ def lancer_chapitre_3(personnage, maisons):
     print("\nScore final : {} points pour {} !".format(points_gagnes, maison_joueur))
     afficher_maison_gagnante(maisons)
 
-    input("--- Appuyez sur ENTREE pour voir votre profil mis à jour ---")
+    input(" Appuyez sur ENTREE pour voir votre profil mis à jour ")
 
     print("\nVoici votre profil mis à jour :")
     afficher_personnage(personnage)
